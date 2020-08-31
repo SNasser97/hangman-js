@@ -16,13 +16,15 @@ const HANGMAN = (function () {
 
 window.onload = () => {
   HANGMAN.guessOutput.textContent = HANGMAN.game2.getPuzzle();
-  HANGMAN.guessRemaining.textContent = 'Current guesses: ' + HANGMAN.game2.guessesLeft;
+  HANGMAN.guessRemaining.textContent = 'Type a letter each time and make a guess!';
 }
 window.document.addEventListener('keypress', (e) => {
   HANGMAN.game2.makeGuess(String.fromCharCode(e.keyCode))
   HANGMAN.guessOutput.textContent = HANGMAN.game2.getPuzzle();
   console.log(HANGMAN.game2);
-  HANGMAN.guessRemaining.textContent = 'Remaining guesses: ' + HANGMAN.game2.guessesLeft;
+  HANGMAN.guessRemaining.textContent = HANGMAN.game2.gameProgress();
+  document.querySelector('#guessedChars').textContent = HANGMAN.game2.guessedChars.join(',');
+
 });
 
 HANGMAN.game2.calculateStatus();

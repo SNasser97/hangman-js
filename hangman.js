@@ -73,7 +73,7 @@ Hangman.prototype.calculateStatus = function () {
 Hangman.prototype.makeGuess = function (char) {
   let guess = char.toLowerCase();
   let isGuessUnique = !this.guessedChars.includes(guess);
-  let isPlaying = this.gameStatus == '';
+  let isPlaying = this.gameStatus == 'playing';
     // if char exists in guessArr then ignore
     if (isGuessUnique && this.guessesLeft > 0) {
       // add if char matches otherwise add incorrect guess and subtract by 1
@@ -88,6 +88,21 @@ Hangman.prototype.makeGuess = function (char) {
     this.calculateStatus();
 }
 
+Hangman.prototype.gameProgress = function () {
+  const isFinished = this.gameStatus === 'finished';
+  const isPlaying = this.gameStatus === 'playing';
+  const isGameover = this.gameStatus === 'failed';
+  let output = '';
+  
+  if (isPlaying) {
+    output = `Remaining guess${this.guessesLeft < 1 ? '' : 'es'}: ${this.guessesLeft}`;
+  } else if (isFinished) {
+    output = 'Well done!';
+  } else {
+    output = `Nice try, the word was ${this.word.join('')}`;
+  }
+  return output;
+}
 
 
 
