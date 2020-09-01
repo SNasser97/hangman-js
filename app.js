@@ -3,6 +3,7 @@
 const HANGMAN = (function () {
   const guessOutput = document.querySelector('#word');
   const guessRemaining = document.querySelector('#guesses');
+  const outputStatus = document.querySelector('#guessedChars');
   const game1 = new Hangman('cat', 2);
   const game2 = new Hangman('New Jersey', 4);
 
@@ -10,7 +11,8 @@ const HANGMAN = (function () {
     game1,
     game2,
     guessOutput,
-    guessRemaining
+    guessRemaining,
+    outputStatus
   }
 })();
 
@@ -23,8 +25,5 @@ window.document.addEventListener('keypress', (e) => {
   HANGMAN.guessOutput.textContent = HANGMAN.game2.getPuzzle();
   console.log(HANGMAN.game2);
   HANGMAN.guessRemaining.textContent = HANGMAN.game2.gameProgress();
-  document.querySelector('#guessedChars').textContent = HANGMAN.game2.guessedChars.join(',');
-
+  HANGMAN.outputStatus.textContent = HANGMAN.game2.guessedChars.join(',');
 });
-
-HANGMAN.game2.calculateStatus();
