@@ -1,3 +1,4 @@
+'use strict';
 
 class Hangman {
   constructor(word, guessesLeft) {
@@ -7,7 +8,7 @@ class Hangman {
     this.gameStatus = 'playing';
   }
 
-  getPuzzle() {
+  get puzzle() {
     return this.word.map(char => {
       //! char === loop through this.guessChars and join as str so: 'c' === ['c'].join('') => 'c' === 'c'
       if (this.guessedChars.includes(char) || char.includes(' ')) {
@@ -16,6 +17,21 @@ class Hangman {
         return '*';
       }
     }).join('');
+  }
+
+  get statusMsg() {
+    const isFinished = this.gameStatus === 'finished';
+    const isPlaying = this.gameStatus === 'playing';
+    let output = '';
+
+    if (isPlaying) {
+      output = `Remaining guess${this.guessesLeft < 1 ? '' : 'es'}: ${this.guessesLeft}`;
+    } else if (isFinished) {
+      output = 'Well done!';
+    } else {
+      output = `Nice try, the word was ${this.word.join('')}`;
+    }
+    return output;
   }
 
   calculateStatus() {
@@ -28,7 +44,6 @@ class Hangman {
         this.gameStatus = 'failed';
       }
     });
-    console.log(this.gameStatus);
   }
 
   makeGuess(char) {
@@ -47,20 +62,5 @@ class Hangman {
       }
     }
     this.calculateStatus();
-  }
-
-  gameProgress() {
-    const isFinished = this.gameStatus === 'finished';
-    const isPlaying = this.gameStatus === 'playing';
-    let output = '';
-
-    if (isPlaying) {
-      output = `Remaining guess${this.guessesLeft < 1 ? '' : 'es'}: ${this.guessesLeft}`;
-    } else if (isFinished) {
-      output = 'Well done!';
-    } else {
-      output = `Nice try, the word was ${this.word.join('')}`;
-    }
-    return output;
   }
 }
