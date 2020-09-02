@@ -1,30 +1,44 @@
 'use strict';
 
-const HANGMAN = (function () {
+const HANGMAN = (function (newWord) {
   const guessOutput = document.querySelector('#word');
   const guessRemaining = document.querySelector('#guesses');
   const outputStatus = document.querySelector('#guessedChars');
-  const game1 = new Hangman('cat', 2);
-  const game2 = new Hangman('New Jersey', 4);
+  const newGame = document.querySelector('#newGame');
+  let game;
 
+  // const start
+  // const game1 = new newWord('cat', 2);
+  // const game2 = new newWord('New Jersey', 4);
+
+  const render = () => {
+    guessOutput.textContent = game.puzzle;
+    guessRemaining.textContent = game.statusMsg;
+    outputStatus.textContent = game.guessedChars.join(',');
+  }
+  
+  const startGame = async () => {
+    const word = await getWord(1);
+    game = new newWord(word, 5);
+    render();
+  }
+
+  document.addEventListener('keypress', (e) => {
+    const guess = String.fromCharCode(e.keyCode);
+    game.makeGuess(guess);
+    render();
+  });
+
+  console.log(document);
   return {
-    game1,
-    game2,
+    game,
     guessOutput,
     guessRemaining,
-    outputStatus
+    outputStatus,
+    startGame,
+    newGame,
+    render,
   }
-})();
+})(HANGMAN_METHODS);
 
-window.onload = () => {
-  HANGMAN.guessOutput.textContent = HANGMAN.game2.puzzle;
-  HANGMAN.guessRemaining.textContent = 'Type a letter each time and make a guess!';
-}
-
-window.document.addEventListener('keypress', (e) => {
-  HANGMAN.game2.makeGuess(String.fromCharCode(e.keyCode))
-  HANGMAN.guessOutput.textContent = HANGMAN.game2.puzzle;
-  // console.log(HANGMAN.game2);
-  HANGMAN.guessRemaining.textContent = HANGMAN.game2.statusMsg;
-  HANGMAN.outputStatus.textContent = HANGMAN.game2.guessedChars.join(',');
-});
+HANGMAN.newGame.addEventListener('click', HANGMAN.startGame);

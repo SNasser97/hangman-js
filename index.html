@@ -13,12 +13,16 @@
 <body>
   <h1>Hangman JS</h1>
   <div class="guess-container">
-    <div id='word' class="guess-word__output"></div>
+    <div id="word" class="guess-word__output"></div>
     <div class="guess-remaining">
-      <p id='guesses' class="guess-remaining__value"></p>
-      <p id='guessedChars' class="guess-remaining__chars"></p>
+      <p id="guesses" class="guess-remaining__value"></p>
+      <p id="guessedChars" class="guess-remaining__chars"></p>
     </div>
   </div>
+  <div class="game-options">
+    <button id="newGame" class="game-options__button-reset">New Game</button>
+  </div>
+  <script src="requests.js"></script>
   <script src="hangman.js"></script>
   <script src="app.js"></script>
 </body>
