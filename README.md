@@ -1,7 +1,9 @@
 # Hangman JS
 
-<p>A JS OOP Project where you try to guess the word each new game.<p>
 
+
+<p>A JS OOP Project where you try to guess the word each new game.<p>
+<h3><a href='https://snasser97.github.io/hangman-js/'>View it here </a></h3>
 <h4>How does it work?</h4>
   <ol>
     <li>Type a character/letter from your keyboard</li>
