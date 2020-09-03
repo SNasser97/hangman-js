@@ -15,7 +15,7 @@ const HANGMAN_METHODS = (function() {
         if (this.guessedChars.includes(char) || char.includes(' ')) {
           return char;
         } else {
-          return '*';
+          return ' _ ';
         }
       }).join('');
     }

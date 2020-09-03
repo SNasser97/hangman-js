@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .guess-word__output {font-size: 3rem;}
-    .guess-remaining__value {font-size: 1.5rem;}
-    .guess-remaining__chars { font-size: 2.2rem; color:royalblue;}
-  </style>
+  <link rel="stylesheet" href="styles/style.css">
+  
 </head>
 <body>
-  <h1>Hangman JS</h1>
+
+  <h1 class="main-title">Hangman JS.</h1>
   <div class="guess-container">
+  <div class="banner"><span>Type a letter to make a guess each time!</span></div>
     <div id="word" class="guess-word__output"></div>
     <div class="guess-remaining">
       <p id="guesses" class="guess-remaining__value"></p>
@@ -22,8 +21,12 @@
   <div class="game-options">
     <button id="newGame" class="game-options__button-reset">New Game</button>
   </div>
-  <script src="requests.js"></script>
-  <script src="hangman.js"></script>
-  <script src="app.js"></script>
+  <div id='test'>
+    <input id='slider' type="range" min='1' max='3'>
+    <p id="emoji"></p>
+  </div>
+  <script src="scripts/requests.js"></script>
+  <script src="scripts/hangman.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 </html>
