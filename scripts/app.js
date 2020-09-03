@@ -7,7 +7,7 @@ const HANGMAN = (function (newWord) {
   const newGame = document.querySelector('#newGame');
   const slide = document.querySelector('#slider');
   const p = document.querySelector('#emoji');
-
+  
   newGame.textContent = 'Start';
   p.textContent = 'Easy 🙂';
   slide.value = '1';
@@ -21,15 +21,18 @@ const HANGMAN = (function (newWord) {
     guessOutput.textContent = game.puzzle;
     guessRemaining.textContent = game.statusMsg;
     outputStatus.textContent = game.guessedChars.join(',');
+    
   }
   
   const startGame = async (wordCount) => {
     const word = await getWord(parseInt(wordCount));
     console.log('curr word count' ,wordCount);
-    game = new newWord(word, wordCount > 1 ? 4 : 6);
+    game = new newWord(word);
     newGame.textContent = 'New Game';
+    document.querySelectorAll('.character *').forEach(e => {
+      e.classList.remove('js-showCharacter');
+    });
     render();
-    // console.clear();
   }
   // increase word count based on slider difficulty e.g. 1 = word, 2 = word.
   // pass slider value to api to increase word count
@@ -91,5 +94,5 @@ HANGMAN.slide.addEventListener('input', (e) => {
 });
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-  alert('This is just a demo using vanilla JS, not for mobile use');
+  alert('Please view on desktop. Not supported on mobile');
 }
