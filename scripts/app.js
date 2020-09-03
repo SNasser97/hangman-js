@@ -10,12 +10,8 @@ const HANGMAN = (function (newWord) {
   
   newGame.textContent = 'Start';
   p.textContent = 'Easy 🙂';
-  slide.value = '1';
+  
   let game;
-
-  // const start
-  // const game1 = new newWord('cat', 2);
-  // const game2 = new newWord('New Jersey', 4);
 
   const render = () => {
     guessOutput.textContent = game.puzzle;
