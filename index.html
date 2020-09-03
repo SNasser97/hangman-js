@@ -8,10 +8,21 @@
   
 </head>
 <body>
-
   <h1 class="main-title">Hangman JS.</h1>
   <div class="guess-container">
-    <!-- <div class="banner"><span>Click Start and type a letter to make a guess each time!</span></div> -->
+    <div class="app-info">
+      <div class="app-info__user-guide">
+        <ul>
+          <li>Type any character from your <span class='highlight highlight--green'>keyboard</span> to make a guess</li>
+          <li>If you guess correctly it will show up</li>
+          <li>Any <span class='highlight highlight--yellow'>incorrect guesses</span> will appear in here</li>
+        </ul>
+        <p class="highlight highlight--green"><strong>Note:</strong> Guessing the same character again won't take up your
+          guesses</p>
+        <br>
+        <p class="highlight highlight--green"><strong>Note:</strong> No need to guess spaces</p>
+      </div>
+    </div>
     <div id="word" class="guess-word__output"></div>
     <div class="guess-remaining">
       <p id="guesses" class="guess-remaining__value"></p>
