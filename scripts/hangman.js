@@ -2,13 +2,13 @@
 // methods for hangman game resides
 const HANGMAN_METHODS = (function() {
   class Hangman {
-    constructor(word, guessesLeft) {
+    constructor(word) {
       this.word = word.toLowerCase().split('');
       this.guessedChars = [];
-      this.guessesLeft = guessesLeft;
+      this.guessesLeft = 0;
       this.gameStatus = 'playing';
+      console.log(this.guessesLeft);
     }
-
     get puzzle() {
       return this.word.map(char => {
         //! char === loop through this.guessChars and join as str so: 'c' === ['c'].join('') => 'c' === 'c'
@@ -22,14 +22,15 @@ const HANGMAN_METHODS = (function() {
 
     get statusMsg() {
       const isFinished = this.gameStatus === 'finished';
-      const isPlaying = this.gameStatus === 'playing';
+      const isFailed = this.gameStatus === 'failed';
+      // const isPlaying = this.gameStatus === 'playing';
       let output = '';
-
-      if (isPlaying) {
-        output = `Remaining guess${this.guessesLeft < 1 ? '' : 'es'}: ${this.guessesLeft}`;
-      } else if (isFinished) {
+      // if (isPlaying) {
+      //   output = `Remaining guess${this.guessesLeft < 1 ? '' : 'es'}: ${this.guessesLeft}`;
+      // } else 
+      if (isFinished) {
         output = 'Well done!';
-      } else {
+      } else if (isFailed) {
         output = `Nice try, the word was ${this.word.join('')}`;
       }
       return output;
@@ -40,7 +41,7 @@ const HANGMAN_METHODS = (function() {
       const chars = str.filter(x => this.guessedChars.includes(x)).join('');
       if (chars == str.join('')) {
         this.gameStatus = 'finished';
-      } else if (this.guessesLeft == 0) {
+      } else if (this.guessesLeft == 12) {
         this.gameStatus = 'failed';
       } else if (this.guessesLeft > 0 ) {
         this.gameStatus = 'playing';
@@ -57,10 +58,11 @@ const HANGMAN_METHODS = (function() {
         // add if char matches otherwise add incorrect guess and subtract by 1
         if (this.word.includes(guess)) {
           this.guessedChars.push(guess);
-          // only make guesses if the game is in progress
+          // show each element if guess is wrong
         } else if (!this.word.includes(guess)) {
           this.guessedChars.push(guess);
-          this.guessesLeft--;
+          document.querySelectorAll('.character *')[this.guessesLeft].classList.add('js-showCharacter');
+          this.guessesLeft++;
         }
       }
       this.calculateStatus();

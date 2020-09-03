@@ -1,9 +1,5 @@
-/* <style>
-    .guess-word__output {font-size: 3rem;}
-    .guess-remaining__value {font-size: 1.5rem;}
-    .guess-remaining__chars { font-size: 2.2rem; color:royalblue;}
-  </style> */
 @import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+
 *,
 *:before,
 *:after {
@@ -33,9 +29,9 @@ body {
 }
 
 .main-title {
-  font-size: 8rem;
+  font-size: 6rem;
   text-align: center;
-  margin-top: 3.5rem;
+  margin-top: 2.5rem;
 }
 
 /* CONTAINER  */
@@ -44,15 +40,23 @@ body {
   justify-content:center;
   flex-direction: column;
   align-items: center;
-  padding: 4rem;
-  margin-top: 4rem;
+  padding: 1rem;
+  margin-top: 2rem;
   text-align: center;
+
 }
 /*  FONT SIZING  OUTPUT */
+.guess-remaining {
+  position: relative;
+}
 .guess-word__output {font-size: 6.5rem;}
 .guess-remaining__value {font-size: 3rem;}
 .guess-remaining__chars { font-size: 4rem; color:royalblue;}
-
+.guess-remaining__chars {
+  position: absolute;
+  right: -55rem;
+  top:18rem;
+}
 /* DIV GAME OPTIONS */
 .game-options {
   display: flex;
@@ -64,14 +68,16 @@ body {
   font-size: 2.5rem;
   padding: 1.5rem;
   background: 0;
+  margin-top: 2rem;
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 2rem;
   transition: all .2s;
   cursor: pointer;
+  background: rgba(0,0,0,.05);
 }
 .game-options__button-reset:hover {
   border: 1px solid rgba(0,0,0,0.45);
-  background: rgba(0,0,0,.05);
+  background: 0;
 }
 
 
@@ -83,6 +89,7 @@ body {
   right:25rem;
   top:10rem;
   height: auto;
+  border:1px solid rgba(0,0,0,.08);
   box-shadow: 2px 1px 3px  rgba(0,0,0,.08);
   padding: 3rem;
   z-index: 2;
@@ -91,6 +98,152 @@ body {
 .sub-title {
   font-size: 2.8rem;
 }
+
+/* HANGMAN CHAR */
+
+.character {
+  height: 70rem;
+  width: 50rem;
+  border:1px solid  rgba(0,0,0,.25);
+  box-shadow: 2px 1px 3px  rgba(0,0,0,.25);
+  margin: 3rem auto;
+  position: relative;
+  /* top:-8rem */
+}
+
+.character * {
+  background: #000;
+  visibility: hidden;
+}
+/* used by js */
+.js-showCharacter {
+  visibility: visible;
+}
+
+.stand {
+  width: 15rem;
+  height: 2rem;
+  position: absolute;
+  bottom:0;
+  right: 3rem;
+}
+.pole {
+  position: absolute;
+  height: 50rem;
+  width: 2rem;
+  right:10rem;
+  bottom:0;
+}
+.poleTwo {
+  position: absolute;
+  width: 2rem;
+  right:9rem;
+  top:19rem;
+  height: 2rem;
+  width: 15rem;
+}
+.hang {
+  position: absolute;
+  width: 2rem;
+  right:18.5rem;
+  top:25.5rem;
+  height: 1rem;
+  width: 10rem;
+  transform:rotate(90deg);
+}
+
+.head {
+  position: absolute;
+  height: 9rem;
+  width: 9rem;
+  background: 0;
+  border: 4px solid;
+  border-radius: 100%;
+  top:30rem;
+  right:19rem;
+}
+
+.eye,
+.eyeTwo {
+  height: 3rem;
+  width: .5rem;
+  position: absolute;
+  top:32rem;
+  transform:rotate(45deg);
+  left:24rem;
+}
+.eye:before {
+  content:'';
+  display: block;
+  height: 3rem;
+  width: .5rem;
+  top:0;
+  position: absolute;
+  transform:rotate(-65deg);
+  background: #000;
+}
+.eyeTwo {
+  top:32rem;
+  transform:rotate(45deg);
+  left:28rem;
+}
+.eyeTwo:before {
+  content:'';
+  display: block;
+  height: 3rem;
+  width: .5rem;
+  top:0;
+  position: absolute;
+  transform:rotate(-65deg);
+  background: #000;
+}
+
+
+.body {
+  width: .6rem;
+  height: 15rem;
+  position: absolute;
+  right:23.5rem;
+  top: 38.5rem;
+}
+
+.arm,
+.armTwo{
+  position: absolute;
+  /* top:38.5rem; */
+  /* right: 23.5rem; */
+  top:40rem;
+  left:22rem;
+  width: .6rem;
+  height: 10rem;
+  transform:rotate(45deg)
+}
+.armTwo {
+  transform:rotate(-45deg);
+  left:29rem;
+}
+
+.leg,
+.legTwo {
+  position: absolute;
+  top:53rem;
+  right: 23.5rem;
+  width: .6rem;
+  height: 14rem;
+}
+.leg { 
+  transform: rotate(45deg);
+  left: 21rem;
+  top: 51rem;
+}
+.legTwo { 
+  left: 30rem;
+  top:51rem;
+  transform: rotate(-45deg)
+}
+
+
+
 /*  MEDIA QUERIES  */
 @media only screen and (max-width: 20em) {
   .main-title { font-size: 4rem; }
@@ -106,10 +259,3 @@ body {
   .guess-remaining__chars { font-size: 2rem; color:royalblue; }
 }
 
-/* HANGMAN CHAR */
-
-.character {
-  height: 4rem;
-  width: 8rem;
-  background: #000;
-}
