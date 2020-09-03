@@ -9,8 +9,8 @@ const HANGMAN = (function (newWord) {
   const p = document.querySelector('#emoji');
 
   newGame.textContent = 'Start';
-  // p.textContent = 'Easy 🙂';
-  
+  p.textContent = 'Easy 🙂';
+  slide.value = '1';
   let game;
 
   // const start
@@ -23,12 +23,36 @@ const HANGMAN = (function (newWord) {
     outputStatus.textContent = game.guessedChars.join(',');
   }
   
-  const startGame = async () => {
-    const word = await getWord(1);
-    game = new newWord('cat', word.length > 3 ? 2 : 5);
+  const startGame = async (wordCount) => {
+    const word = await getWord(parseInt(wordCount));
+    console.log('curr word count' ,wordCount);
+    game = new newWord(word, wordCount > 1 ? 4 : 6);
     newGame.textContent = 'New Game';
     render();
-    console.clear();
+    // console.clear();
+  }
+  // increase word count based on slider difficulty e.g. 1 = word, 2 = word.
+  // pass slider value to api to increase word count
+  const difficultyOption = (value) => {
+    let currVal = parseInt(value);
+    switch (currVal.toString()) {
+      case '1':
+        p.textContent = 'Easy 🙂';
+        currVal = parseInt(value);
+        break;
+      case '2':
+        p.textContent = 'Medium 😐';
+        currVal = parseInt(value);
+        break;
+      case '3':
+        p.textContent = 'Hard 😓';
+        currVal = parseInt(value);
+        break;
+      default:
+        p.textContent;
+        currVal;
+    }
+    return currVal;
   }
 
   document.addEventListener('keypress', (e) => {
@@ -40,7 +64,7 @@ const HANGMAN = (function (newWord) {
     }
     render();
   });
-
+  
   return {
     game,
     guessOutput,
@@ -50,29 +74,22 @@ const HANGMAN = (function (newWord) {
     newGame,
     render,
     slide,
-    p
+    difficultyOption,
   }
 })(HANGMAN_METHODS);
 
-HANGMAN.newGame.addEventListener('click', HANGMAN.startGame);
+window.onload = () => {
+  HANGMAN.slide.value = '1';
+}
 
-// HANGMAN.slide.addEventListener('input', (e) => {
-//   let value = 0;
-//   switch(e.target.value) {
-//     case '2':
-//       HANGMAN.p.textContent = 'Medium 😐';
-//       value = parseInt(e.target.value);
-//       break;
-//     case '3':
-//       HANGMAN.p.textContent = 'Hard 😓';
-//       value = parseInt(e.target.value);
-//       break;
-//     default:
-//       HANGMAN.p.textContent = 'Easy 🙂';
-//       value = parseInt(e.target.value);
-//   }
-// })
+HANGMAN.newGame.addEventListener('click', (e) => {
+  HANGMAN.startGame(HANGMAN.difficultyOption(HANGMAN.slide.value))
+});
 
-// if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//   alert('This is just a demo using vanilla JS, not for mobile use');
-// }
+HANGMAN.slide.addEventListener('input', (e) => {
+  HANGMAN.difficultyOption(e.target.value);
+});
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+  alert('This is just a demo using vanilla JS, not for mobile use');
+}
