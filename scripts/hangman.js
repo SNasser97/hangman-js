@@ -7,7 +7,7 @@ const HANGMAN_METHODS = (function() {
       this.guessedChars = [];
       this.guessesLeft = 0;
       this.gameStatus = 'playing';
-      console.log(this.guessesLeft);
+      console.log('guesses left', this.guessesLeft);
     }
     get puzzle() {
       return this.word.map(char => {
