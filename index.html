@@ -4,15 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
-    .guess-word__output {font-size: 3rem;}
-    .guess-remaining__value {font-size: 1.5rem;}
-    .guess-remaining__chars { font-size: 2.2rem; color:royalblue;}
-  </style>
+  <link rel="stylesheet" href="styles/style.css">
+  
 </head>
 <body>
-  <h1>Hangman JS</h1>
+
+  <h1 class="main-title">Hangman JS.</h1>
   <div class="guess-container">
+    <div class="banner"><span>Type a letter to make a guess each time!</span></div>
     <div id="word" class="guess-word__output"></div>
     <div class="guess-remaining">
       <p id="guesses" class="guess-remaining__value"></p>
@@ -20,10 +19,35 @@
     </div>
   </div>
   <div class="game-options">
+    <div class="game-options__difficulty-options">
+      <p class="sub-title">Change Difficulty</p>
+      <input id='slider' class="game-options__difficulty-slider" type="range" min='1' max='3'>
+      <p id="emoji" class="game-options__difficulty-output"></p>
+    </div>
     <button id="newGame" class="game-options__button-reset">New Game</button>
   </div>
-  <script src="requests.js"></script>
-  <script src="hangman.js"></script>
-  <script src="app.js"></script>
+  <div class="character">
+    <div class="stand"></div>
+    <div class="pole"></div>
+    <div class="pole--2"></div>
+    <div class="pole--3"></div>
+    <div class="hang"></div>
+    <div class="head">
+      <div class="eye eye--1"><span></span><span></span></div>
+      <div class="eye eye--2"><span></span><span></span></div>
+    </div>
+    <div class="body"></div>
+    <div class="arm">
+      <div class="arm arm--1"></div>
+      <div class="arm arm--2"></div>
+    </div>
+    <div class="leg">
+      <div class="leg leg--1"></div>
+      <div class="leg leg--2"></div>
+    </div>
+  </div>
+  <script src="scripts/requests.js"></script>
+  <script src="scripts/hangman.js"></script>
+  <script src="scripts/app.js"></script>
 </body>
 </html>

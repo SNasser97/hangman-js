@@ -1,0 +1,115 @@
+/* <style>
+    .guess-word__output {font-size: 3rem;}
+    .guess-remaining__value {font-size: 1.5rem;}
+    .guess-remaining__chars { font-size: 2.2rem; color:royalblue;}
+  </style> */
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
+*,
+*:before,
+*:after {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Architects Daughter', 'Arial', serif;
+  height: 100%;
+  position: relative;
+}
+
+.banner {
+  color:#fff;
+  padding:1.5rem;
+  top:2.5rem;
+  background: #000;
+  box-shadow: 0px 1px 15px 2px rgba(0,0,0,.35);
+  border-radius: .5rem;
+  margin-bottom: 3.2rem;
+}
+
+.main-title {
+  font-size: 8rem;
+  text-align: center;
+  margin-top: 3.5rem;
+}
+
+/* CONTAINER  */
+.guess-container {
+  display: flex;
+  justify-content:center;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem;
+  margin-top: 4rem;
+  text-align: center;
+}
+/*  FONT SIZING  OUTPUT */
+.guess-word__output {font-size: 6.5rem;}
+.guess-remaining__value {font-size: 3rem;}
+.guess-remaining__chars { font-size: 4rem; color:royalblue;}
+
+/* DIV GAME OPTIONS */
+.game-options {
+  display: flex;
+  justify-content: center;
+  /* position: relative; */
+}
+.game-options__button-reset {
+  font-family: inherit;
+  font-size: 2.5rem;
+  padding: 1.5rem;
+  background: 0;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 2rem;
+  transition: all .2s;
+  cursor: pointer;
+}
+.game-options__button-reset:hover {
+  border: 1px solid rgba(0,0,0,0.45);
+  background: rgba(0,0,0,.05);
+}
+
+
+
+/* DIV GAME OPTIONS -> DIFFICULTY OPTIONS */
+.game-options .game-options__difficulty-options {
+  font-size: 2.5rem;
+  position: absolute;
+  right:25rem;
+  top:10rem;
+  height: auto;
+  box-shadow: 2px 1px 3px  rgba(0,0,0,.08);
+  padding: 3rem;
+  z-index: 2;
+  text-align: center;
+}
+.sub-title {
+  font-size: 2.8rem;
+}
+/*  MEDIA QUERIES  */
+@media only screen and (max-width: 20em) {
+  .main-title { font-size: 4rem; }
+  .guess-word__output { font-size: 2.5rem; }
+  .guess-remaining__value { font-size: 1.8rem; }
+  .guess-remaining__chars { font-size: 1.8rem; color:royalblue; }
+}
+
+@media only screen and (max-width: 37.5em) {
+  .main-title { font-size: 5rem;}
+  .guess-word__output { font-size: 2.5rem; }
+  .guess-remaining__value { font-size: 2.5rem; }
+  .guess-remaining__chars { font-size: 2rem; color:royalblue; }
+}
+
+/* HANGMAN CHAR */
+
+.character {
+  height: 4rem;
+  width: 8rem;
+  background: #000;
+}
